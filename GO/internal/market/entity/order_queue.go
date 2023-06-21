@@ -4,11 +4,6 @@ type OrderQueue struct {
 	Orders []*Order
 }
 
-// Less
-// Swap
-// Len
-// Push
-// Pop
 func (oq *OrderQueue) Less(i, j int) bool {
 	return oq.Orders[i].Price < oq.Orders[j].Price
 }
@@ -21,11 +16,11 @@ func (oq *OrderQueue) Len() int {
 	return len(oq.Orders)
 }
 
-func (oq *OrderQueue) Push(x any) {
+func (oq *OrderQueue) Push(x interface{}) {
 	oq.Orders = append(oq.Orders, x.(*Order))
 }
 
-func (oq *OrderQueue) Pop() any {
+func (oq *OrderQueue) Pop() interface{} {
 	old := oq.Orders
 	n := len(old)
 	item := old[n-1]

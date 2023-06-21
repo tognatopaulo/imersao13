@@ -3,7 +3,7 @@ package entity
 type Investor struct {
 	ID            string
 	Name          string
-	AssetPosition []*InvestorAssetPosition //* representa o endereço da memória
+	AssetPosition []*InvestorAssetPosition
 }
 
 func NewInvestor(id string) *Investor {
@@ -13,11 +13,11 @@ func NewInvestor(id string) *Investor {
 	}
 }
 
-func (i Investor) AddAssetPosition(assetPosition *InvestorAssetPosition) {
+func (i *Investor) AddAssetPosition(assetPosition *InvestorAssetPosition) {
 	i.AssetPosition = append(i.AssetPosition, assetPosition)
 }
 
-func (i Investor) UpdateAssetPosition(assetID string, qtdShares int) {
+func (i *Investor) UpdateAssetPosition(assetID string, qtdShares int) {
 	assetPosition := i.GetAssetPosition(assetID)
 	if assetPosition == nil {
 		i.AssetPosition = append(i.AssetPosition, NewInvestorAssetPosition(assetID, qtdShares))
@@ -26,7 +26,7 @@ func (i Investor) UpdateAssetPosition(assetID string, qtdShares int) {
 	}
 }
 
-func (i Investor) GetAssetPosition(assetID string) *InvestorAssetPosition {
+func (i *Investor) GetAssetPosition(assetID string) *InvestorAssetPosition {
 	for _, assetPosition := range i.AssetPosition {
 		if assetPosition.AssetID == assetID {
 			return assetPosition
